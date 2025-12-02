@@ -515,6 +515,16 @@ int psf_round(double val)
         k = -k;
     return (int) k;
 }
+#else
+/* For non-MSC compilers (e.g., GCC, Clang) */
+int psf_round(double val)
+{
+    long k;
+    k = (long)(fabs(val)+0.5);
+    if(val < 0.0)
+        k = -k;
+    return (int) k;
+}
 #endif
 
 #ifndef WIN32
